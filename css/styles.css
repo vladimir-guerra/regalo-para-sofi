@@ -1,0 +1,240 @@
+/* 1. Reset y Variables */
+:root {
+  --font-main:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", Geneva, Verdana,
+    sans-serif;
+  --primary-color: #c962bb;
+  --secondary-color: #f16767;
+  --bg-overlay: rgba(255, 255, 255, 0.85);
+  --text-color: #333;
+  --transition: 0.3s ease-in-out;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  line-height: 1.6;
+  font-family: var(--font-main);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* 2. Tipografía General */
+p,
+h1,
+h2,
+a,
+li {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+}
+
+/* 3. Header y Navegación */
+#header {
+  background-color: var(--primary-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#mobile-nav {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 40px;
+}
+
+/* Estilo para el menú (Mobile First) */
+#main-nav ul {
+  list-style: none;
+  display: none; /* Se oculta por defecto en móvil si usas JS para clases */
+}
+
+/* Si usas la clase .nav-open que tenías: */
+.nav-open #main-nav {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--secondary-color);
+}
+
+/* 4. Contenido Principal (Main) */
+main {
+  background-image: url("../src/img/background.jfif");
+  background-attachment: fixed; /* Efecto Parallax suave */
+  background-position: center;
+  background-size: contain;
+  background-repeat: repeat;
+  padding-top: 70px; /* Evita que el header tape el contenido */
+}
+
+/* Hero Section */
+#welcome-div {
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 255, 255, 0.3); /* Aqua con transparencia */
+}
+
+#welcome {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: bold;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Secciones */
+section {
+  margin: 2rem auto;
+  max-width: 900px;
+  width: 90%;
+  /*background-color: var(--bg-overlay);*/
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(5px); /* Efecto moderno */
+}
+
+section h1 {
+  text-align: center;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 1.5rem;
+}
+
+/* 5. Galería y Figuras (Grid es mejor que Float) */
+#sobre-sofia {
+  display: flow-root; /* Contiene el float si decides mantenerlo */
+}
+
+#owl-girl {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 1.5rem auto;
+  text-align: center;
+}
+
+#owl-girl img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+#gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+#gallery figure img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* Evita que las fotos se deformen */
+  border-radius: 8px;
+  transition: transform var(--transition);
+}
+
+#gallery figure img:hover {
+  transform: scale(1.05);
+}
+
+/* 6. Detalles Especiales */
+#surname {
+  background-color: #000;
+  padding: 0 5px;
+  user-select: none;
+}
+
+#the-best {
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+  color: #d63384;
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+}
+
+/* --- CONFIGURACIÓN PARA MÓVIL --- */
+@media (max-width: 767px) {
+  #main-nav {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Escondido a la izquierda */
+    width: 70%; /* Ocupa el 70% del ancho */
+    height: 100vh;
+    background-color: #f16767;
+    transition: all 0.4s ease;
+    z-index: 999;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  /* FORZAMOS que la lista se vea cuando el nav está abierto */
+  #main-nav.nav-open {
+    left: 0;
+  }
+
+  #main-nav ul {
+    display: flex !important; /* El !important rompe cualquier display:none previo */
+    flex-direction: column;
+    list-style: none;
+  }
+
+  #main-nav ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  #main-nav ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    width: 100%;
+  }
+}
+
+/* --- CONFIGURACIÓN PARA ESCRITORIO --- */
+@media (min-width: 768px) {
+  #mobile-nav {
+    display: none; /* Esconde el icono de hamburguesa */
+  }
+
+  #main-nav {
+    position: static; /* Vuelve a su lugar normal */
+    height: auto;
+    width: auto;
+    background: transparent;
+  }
+
+  #main-nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  #main-nav ul {
+    display: flex !important;
+    flex-direction: row;
+    gap: 20px;
+  }
+}
