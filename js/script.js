@@ -53,6 +53,7 @@ $(document).ready(async () => {
     welcome.fadeOut(500);
     await wait(1500);
   }
+  $("#two-owls").fadeIn(800)
 });
 
 $(document).on("click", function (e) {

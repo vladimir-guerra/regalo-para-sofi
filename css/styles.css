@@ -97,7 +97,8 @@ main {
   height: 100dvh;
   display: grid;
   place-items: center;
-  background-color: rgba(0, 255, 255, 0.3); /* Aqua con transparencia */
+  background-color: rgba(11, 0, 70, 0.8); /* Aqua con transparencia */
+  overflow: hidden;
 }
 
 #welcome {
@@ -105,6 +106,7 @@ main {
   font-weight: bold;
   text-align: center;
   padding: 0 1rem;
+  color: white;
 }
 
 /* Secciones */
@@ -174,6 +176,20 @@ section h1 {
   font-style: italic;
   color: #d63384;
   font-size: clamp(1.4rem, 5vw, 1.8rem);
+}
+
+#two-owls {
+  display: none; 
+  max-width: 80%;
+  max-height: 80vh;
+  
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.poem{
+  text-align: center;
+  font-style: italic;
 }
 
 /* --- CONFIGURACIÓN PARA MÓVIL --- */
